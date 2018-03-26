@@ -1,7 +1,7 @@
 /*
 The Wrapper Package
  */
-package galio
+package Galio
 
 import (
 	"./handlers"

@@ -2,7 +2,7 @@ package test
 
 import (
 	"testing"
-	"../src/galio/regions"
+	"../regions"
 	"fmt"
 )
 

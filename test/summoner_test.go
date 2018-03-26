@@ -1,8 +1,8 @@
 package test
 
 import (
-	"../src/galio/regions"
-	"../src/galio"
+	"github.com/skarajic/galio/regions"
+	"github.com/skarajic/galio"
 	"os"
 	"testing"
 )
