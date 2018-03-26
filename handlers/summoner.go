@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"fmt"
-	"../entities"
+	"github.com/skarajic/galio/entities"
 	"encoding/json"
 )
 

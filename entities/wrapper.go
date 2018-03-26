@@ -1,9 +1,9 @@
 package entities
 
 import (
-	"../regions"
-	"../urls"
-	"../util"
+	"github.com/skarajic/galio/regions"
+	"github.com/skarajic/galio/urls"
+	"github.com/skarajic/galio/util"
 	"fmt"
 )
 
