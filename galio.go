@@ -4,9 +4,9 @@ The Wrapper Package
 package Galio
 
 import (
-	"./handlers"
-	"./entities"
-	"./regions"
+	"github.com/skarajic/galio/handlers"
+	"github.com/skarajic/galio/entities"
+	"github.com/skarajic/galio/regions"
 )
 
 type Galio entities.Galio
