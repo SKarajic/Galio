@@ -22,7 +22,7 @@ type Galio struct {
 /*
 Handles requests to Riot API
  */
-func (g *Galio) GetData(endpoint string) string {
+func (g *Galio) GetRiotData(endpoint string) string {
 	url := fmt.Sprintf(urls.API, g.Region, endpoint)
 
 	m := make(map[string] string)
