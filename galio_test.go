@@ -1,7 +1,7 @@
 package Galio
 
 import (
-	"./regions"
+	"github.com/skarajic/galio/regions"
 	"os"
 	"testing"
 )
