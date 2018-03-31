@@ -12,7 +12,7 @@ import (
 type Galio entities.Galio
 type SummonerInput entities.SummonerInput
 
-/*
+/**
 Generates a new Galio Wrapper Object
  */
 func New(ApiKey string, Region regions.Region) Galio {

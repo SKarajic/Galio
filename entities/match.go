@@ -1,19 +1,19 @@
 package entities
 
 type Match struct {
-	SeasonID              uint64                  `json:"seasonId"`
-	QueueID               uint64                  `json:"queueId"`
-	GameID                uint64                  `json:"gameId"`
-	ParticipantIdentities []participantIdentities `json:"participantIdentities"`
-	GameVersion           string                  `json:"gameVersion"`
-	PlatformID            string                  `json:"platformId"`
-	GameMode              string                  `json:"gameMode"`
-	MapID                 uint                    `json:"mapId"`
-	GameType              string                  `json:"gameType"`
-	Teams                 []Team                  `json:"teams"`
-	Participants          []Participant           `json:"participants"`
-	GameDuration          uint64                  `json:"gameDuration"`
-	GameCreation          uint64                  `json:"gameCreation"`
+	SeasonID              uint64                `json:"seasonId"`
+	QueueID               uint64                `json:"queueId"`
+	GameID                uint64                `json:"gameId"`
+	ParticipantIdentities []participantIdentity `json:"participantIdentity"`
+	GameVersion           string                `json:"gameVersion"`
+	PlatformID            string                `json:"platformId"`
+	GameMode              string                `json:"gameMode"`
+	MapID                 uint                  `json:"mapId"`
+	GameType              string                `json:"gameType"`
+	Teams                 []Team                `json:"teams"`
+	Participants          []Participant         `json:"participants"`
+	GameDuration          uint64                `json:"gameDuration"`
+	GameCreation          uint64                `json:"gameCreation"`
 }
 
 type MatchPlayer struct {
@@ -27,7 +27,7 @@ type MatchPlayer struct {
 	CurrentPlatformID string `json:"currentPlatformId"`
 }
 
-type participantIdentities struct {
+type participantIdentity struct {
 	Player        MatchPlayer `json:"player"`
 	ParticipantID uint        `json:"participantId"`
 }
@@ -57,14 +57,14 @@ type Team struct {
 }
 
 type Participant struct {
-	ParticipantID             uint             `json:"participantId"`
-	TeamID                    uint             `json:"teamId"`
-	ChampionID                uint             `json:"championId"`
-	Spell1ID                  uint             `json:"spell1Id"`
-	Spell2ID                  uint             `json:"spell2Id"`
-	Stats                     ParticipantStats `json:"stats"`
-	Timeline                  Timeline         `json:"timeline"`
-	HighestAchievedSeasonTier string           `json:"highestAchievedSeasonTier"`
+	ParticipantID             uint                `json:"participantId"`
+	TeamID                    uint                `json:"teamId"`
+	ChampionID                uint                `json:"championId"`
+	Spell1ID                  uint                `json:"spell1Id"`
+	Spell2ID                  uint                `json:"spell2Id"`
+	Stats                     ParticipantStats    `json:"stats"`
+	Timeline                  ParticipantTimeLine `json:"timeline"`
+	HighestAchievedSeasonTier string              `json:"highestAchievedSeasonTier"`
 }
 
 type Delta struct {
@@ -73,7 +73,7 @@ type Delta struct {
 	Two030 uint64 `json:"20-30"`
 }
 
-type Timeline struct {
+type ParticipantTimeLine struct {
 	Lane                        string `json:"lane"`
 	Role                        string `json:"role"`
 	ParticipantID               uint   `json:"participantId"`

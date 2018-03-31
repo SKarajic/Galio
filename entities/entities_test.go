@@ -1,4 +1,4 @@
-package Galio
+package entities
 
 import (
 	"testing"
@@ -9,11 +9,8 @@ import (
 
 var key = os.Getenv("API_KEY")
 
-/**
-Tests the getSummoner method
- */
-func TestNew(t *testing.T) {
-	galio := New(key, regions.EUW)
+func TestWrapper(t *testing.T) {
+	galio := Galio{key, regions.EUW}
 
 	if galio.Region != regions.EUW {
 		t.Errorf(fmt.Sprintf("Wrong region received. should be euw1, got %s", galio.Region))
