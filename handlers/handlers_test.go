@@ -1,12 +1,12 @@
 package handlers
 
 import (
-	"github.com/skarajic/galio/regions"
-	"github.com/skarajic/galio/entities"
-	"testing"
-	"sync"
-	"os"
 	"fmt"
+	"github.com/skarajic/galio/entities"
+	"github.com/skarajic/galio/regions"
+	"os"
+	"sync"
+	"testing"
 )
 
 var key = os.Getenv("API_KEY")
@@ -15,68 +15,75 @@ var wg = sync.WaitGroup{}
 
 /**
 Tests the getSummoner method
- */
+*/
 func TestGetSummoner(t *testing.T) {
 	var sums [3]entities.Summoner
+	var sis [3]entities.SummonerInput
 
-	si1 := entities.SummonerInput{ SummonerName: "IAmTheWhite" }
-	si2	:= entities.SummonerInput{ SummonerId: 69658457 }
-	si3 := entities.SummonerInput{ AccountId: 219406964 }
+	sis[0] = entities.SummonerInput{SummonerName: "IAmTheWhite"}
+	sis[1] = entities.SummonerInput{SummonerId: 69658457}
+	sis[2] = entities.SummonerInput{AccountId: 219406964}
 
 	wg.Add(3)
-	go func() {
-		defer wg.Done()
-		sums[0] = GetSummoner(wrapper, si1)
-	}()
-	go func() {
-		defer wg.Done()
-		sums[1] = GetSummoner(wrapper, si2)
-
-	}()
-	go func() {
-		defer wg.Done()
-		sums[2] = GetSummoner(wrapper, si3)
-	}()
+	for i := range sis {
+		go func(i int) {
+			defer wg.Done()
+			sums[i] = GetSummoner(wrapper, sis[i])
+		}(i)
+	}
 	wg.Wait()
 
-	for i := 0; i < 3; i++ {
-		if sums[i].Id != 69658457 {
-			t.Errorf(fmt.Sprintf("Wrong summonerID received. should be 69658457, got %d", sums[i].Id))
+	fmt.Println(sums[0])
+
+	for _, sum := range sums {
+		if sum.Id != 69658457 {
+			t.Errorf(fmt.Sprintf("Wrong summonerID received. should be 69658457, got %d", sum.Id))
 		}
 	}
 }
 
 /**
 Test the getMatchList method
- */
+*/
 func TestGetMatchList(t *testing.T) {
-	var ml1, ml2, ml3, ml4 entities.MatchList
+	var mls [4]entities.MatchList
+	var sis [3]entities.SummonerInput
 
-	si1 := entities.SummonerInput{ SummonerName: "IAmTheWhite" }
-	si2	:= entities.SummonerInput{ SummonerId: 69658457 }
-	si3 := entities.SummonerInput{ AccountId: 219406964 }
+	sis[0] = entities.SummonerInput{SummonerName: "IAmTheWhite"}
+	sis[1] = entities.SummonerInput{SummonerId: 69658457}
+	sis[2] = entities.SummonerInput{AccountId: 219406964}
 
 	wg.Add(4)
+	for i := range sis {
+		go func(i int) {
+			defer wg.Done()
+			mls[i] = GetMatchList(wrapper, sis[i], false)
+		}(i)
+	}
 	go func() {
 		defer wg.Done()
-		ml1 = GetMatchList(wrapper, si1, false)
-	}()
-	go func() {
-		defer wg.Done()
-		ml2 = GetMatchList(wrapper, si2, false)
-	}()
-	go func() {
-		defer wg.Done()
-		ml3 = GetMatchList(wrapper, si3, false)
-	}()
-	go func() {
-		defer wg.Done()
-		ml4 = GetMatchList(wrapper, si3, true)
-
+		mls[3] = GetMatchList(wrapper, sis[2], true)
 	}()
 	wg.Wait()
 
-	if len(ml1.Matches) < 0 || len(ml2.Matches) < 0 || len(ml3.Matches) < 0 || len(ml4.Matches) < 0 {
-		t.Errorf("Not the correct matchlist data received")
+	for i, ml := range mls {
+		if len(ml.Matches) < 0 {
+			t.Errorf("Not the correct matchlist data received from matchlist %d", i)
+		}
+	}
+}
+
+/**
+Test the getMatch method
+*/
+func TestGetMatch(t *testing.T) {
+	si := entities.SummonerInput{AccountId: 219406964}
+	ml := GetMatchList(wrapper, si, false)
+
+	mId := ml.Matches[0].MatchId
+	match := GetMatch(wrapper, mId)
+
+	if match.MatchId != mId {
+		t.Errorf("Wrong matchId received. should be %d, got %d", mId, match.MatchId)
 	}
 }
