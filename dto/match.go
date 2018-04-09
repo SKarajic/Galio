@@ -1,22 +1,22 @@
-package entities
+package dto
 
-type Match struct {
-	SeasonID              uint64                `json:"seasonId"`
-	QueueID               uint64                `json:"queueId"`
-	MatchId               uint64                `json:"gameId"`
-	ParticipantIdentities []participantIdentity `json:"participantIdentity"`
-	GameVersion           string                `json:"gameVersion"`
-	PlatformID            string                `json:"platformId"`
-	GameMode              string                `json:"gameMode"`
-	MapID                 uint                  `json:"mapId"`
-	GameType              string                `json:"gameType"`
-	Teams                 []Team                `json:"teams"`
-	Participants          []Participant         `json:"participants"`
-	GameDuration          uint64                `json:"gameDuration"`
-	GameCreation          uint64                `json:"gameCreation"`
+type MatchDTO struct {
+	SeasonID              uint64                   `json:"seasonId"`
+	QueueID               uint64                   `json:"queueId"`
+	MatchId               uint64                   `json:"gameId"`
+	ParticipantIdentities []ParticipantIdentityDTO `json:"ParticipantIdentityDTO"`
+	GameVersion           string                   `json:"gameVersion"`
+	PlatformID            string                   `json:"platformId"`
+	GameMode              string                   `json:"gameMode"`
+	MapID                 uint                     `json:"mapId"`
+	GameType              string                   `json:"gameType"`
+	Teams                 []TeamStatsDTO           `json:"teams"`
+	Participants          []ParticipantDTO         `json:"participants"`
+	GameDuration          uint64                   `json:"gameDuration"`
+	GameCreation          uint64                   `json:"gameCreation"`
 }
 
-type MatchPlayer struct {
+type PlayerDTO struct {
 	AccountID         uint64 `json:"accountId"`
 	SummonerID        uint64 `json:"summonerId"`
 	SummonerName      string `json:"summonerName"`
@@ -27,66 +27,66 @@ type MatchPlayer struct {
 	CurrentPlatformID string `json:"currentPlatformId"`
 }
 
-type participantIdentity struct {
-	Player        MatchPlayer `json:"player"`
-	ParticipantID uint        `json:"participantId"`
+type ParticipantIdentityDTO struct {
+	Player        PlayerDTO `json:"player"`
+	ParticipantID uint      `json:"participantId"`
 }
 
-type Ban struct {
+type TeamBansDTO struct {
 	PickTurn   uint `json:"pickTurn"`
 	ChampionID uint `json:"championId"`
 }
 
-type Team struct {
-	FirstDragon          bool   `json:"firstDragon"`
-	Bans                 []Ban  `json:"bans"`
-	FirstInhibitor       bool   `json:"firstInhibitor"`
-	Win                  string `json:"win"`
-	FirstRiftHerald      bool   `json:"firstRiftHerald"`
-	FirstBaron           bool   `json:"firstBaron"`
-	BaronKills           uint   `json:"baronKills"`
-	RiftHeraldKills      uint   `json:"riftHeraldKills"`
-	FirstBlood           bool   `json:"firstBlood"`
-	TeamID               uint   `json:"teamId"`
-	FirstTower           bool   `json:"firstTower"`
-	VilemawKills         uint   `json:"vilemawKills"`
-	InhibitorKills       uint   `json:"inhibitorKills"`
-	TowerKills           uint   `json:"towerKills"`
-	DominionVictoryScore uint   `json:"dominionVictoryScore"`
-	DragonKills          uint   `json:"dragonKills"`
+type TeamStatsDTO struct {
+	FirstDragon          bool          `json:"firstDragon"`
+	Bans                 []TeamBansDTO `json:"bans"`
+	FirstInhibitor       bool          `json:"firstInhibitor"`
+	Win                  string        `json:"win"`
+	FirstRiftHerald      bool          `json:"firstRiftHerald"`
+	FirstBaron           bool          `json:"firstBaron"`
+	BaronKills           uint          `json:"baronKills"`
+	RiftHeraldKills      uint          `json:"riftHeraldKills"`
+	FirstBlood           bool          `json:"firstBlood"`
+	TeamID               uint          `json:"teamId"`
+	FirstTower           bool          `json:"firstTower"`
+	VilemawKills         uint          `json:"vilemawKills"`
+	InhibitorKills       uint          `json:"inhibitorKills"`
+	TowerKills           uint          `json:"towerKills"`
+	DominionVictoryScore uint          `json:"dominionVictoryScore"`
+	DragonKills          uint          `json:"dragonKills"`
 }
 
-type Participant struct {
-	ParticipantID             uint                `json:"participantId"`
-	TeamID                    uint                `json:"teamId"`
-	ChampionID                uint                `json:"championId"`
-	Spell1ID                  uint                `json:"spell1Id"`
-	Spell2ID                  uint                `json:"spell2Id"`
-	Stats                     ParticipantStats    `json:"stats"`
-	TimeLine                  ParticipantTimeLine `json:"timeline"`
-	HighestAchievedSeasonTier string              `json:"highestAchievedSeasonTier"`
+type ParticipantDTO struct {
+	ParticipantID             uint                   `json:"participantId"`
+	TeamID                    uint                   `json:"teamId"`
+	ChampionID                uint                   `json:"championId"`
+	Spell1ID                  uint                   `json:"spell1Id"`
+	Spell2ID                  uint                   `json:"spell2Id"`
+	Stats                     ParticipantStatsDTO    `json:"stats"`
+	TimeLine                  ParticipantTimeLineDTO `json:"timeline"`
+	HighestAchievedSeasonTier string                 `json:"highestAchievedSeasonTier"`
 }
 
-type Delta struct {
+type DeltaDTO struct {
 	Zero10 uint64 `json:"0-10"`
 	One020 uint64 `json:"10-20"`
 	Two030 uint64 `json:"20-30"`
 }
 
-type ParticipantTimeLine struct {
-	Lane                        string `json:"lane"`
-	Role                        string `json:"role"`
-	ParticipantID               uint   `json:"participantId"`
-	CsDiffPerMinDeltas          Delta  `json:"csDiffPerMinDeltas"`
-	GoldPerMinDeltas            Delta  `json:"goldPerMinDeltas"`
-	XpDiffPerMinDeltas          Delta  `json:"xpDiffPerMinDeltas"`
-	CreepsPerMinDeltas          Delta  `json:"creepsPerMinDeltas"`
-	XpPerMinDeltas              Delta  `json:"xpPerMinDeltas"`
-	DamageTakenDiffPerMinDeltas Delta  `json:"damageTakenDiffPerMinDeltas"`
-	DamageTakenPerMinDeltas     Delta  `json:"damageTakenPerMinDeltas"`
+type ParticipantTimeLineDTO struct {
+	Lane                        string   `json:"lane"`
+	Role                        string   `json:"role"`
+	ParticipantID               uint     `json:"participantId"`
+	CsDiffPerMinDeltas          DeltaDTO `json:"csDiffPerMinDeltas"`
+	GoldPerMinDeltas            DeltaDTO `json:"goldPerMinDeltas"`
+	XpDiffPerMinDeltas          DeltaDTO `json:"xpDiffPerMinDeltas"`
+	CreepsPerMinDeltas          DeltaDTO `json:"creepsPerMinDeltas"`
+	XpPerMinDeltas              DeltaDTO `json:"xpPerMinDeltas"`
+	DamageTakenDiffPerMinDeltas DeltaDTO `json:"damageTakenDiffPerMinDeltas"`
+	DamageTakenPerMinDeltas     DeltaDTO `json:"damageTakenPerMinDeltas"`
 }
 
-type ParticipantStats struct {
+type ParticipantStatsDTO struct {
 	ParticipantID                   uint `json:"participantId"`
 	ChampLevel                      uint `json:"champLevel"`
 	GoldEarned                      uint `json:"goldEarned"`

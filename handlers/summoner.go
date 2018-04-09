@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"fmt"
-	"github.com/skarajic/galio/entities"
 	"encoding/json"
+	"fmt"
+	"github.com/skarajic/galio/dto"
 )
 
-func GetSummoner(wrapper entities.Galio, input entities.SummonerInput) entities.Summoner {
+func GetSummoner(wrapper dto.Galio, input dto.SummonerInput) dto.SummonerDTO {
 	var data string
-	var summoner entities.Summoner
+	var summoner dto.SummonerDTO
 	endpoint := "summoner/v3/summoners/"
 
 	switch {

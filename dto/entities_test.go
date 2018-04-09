@@ -1,10 +1,10 @@
-package entities
+package dto
 
 import (
-	"testing"
-	"os"
-	"github.com/skarajic/galio/regions"
 	"fmt"
+	"github.com/skarajic/galio/regions"
+	"os"
+	"testing"
 )
 
 var key = os.Getenv("API_KEY")

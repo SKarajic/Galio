@@ -1,13 +1,13 @@
-package entities
+package dto
 
-type MatchList struct {
-	Matches    []MatchSummary `json:"matches"`
-	EndIndex   uint64         `json:"endIndex"`
-	StartIndex uint64         `json:"startIndex"`
-	TotalGames uint64         `json:"totalGames"`
+type MatchListDTO struct {
+	Matches    []MatchReferenceDTO `json:"matches"`
+	EndIndex   uint64              `json:"endIndex"`
+	StartIndex uint64              `json:"startIndex"`
+	TotalGames uint64              `json:"totalGames"`
 }
 
-type MatchSummary struct {
+type MatchReferenceDTO struct {
 	Lane       string `json:"lane"`
 	MatchId    uint64 `json:"gameId"`
 	Champion   uint64 `json:"champion"`

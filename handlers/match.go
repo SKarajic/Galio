@@ -3,12 +3,12 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/skarajic/galio/entities"
+	"github.com/skarajic/galio/dto"
 )
 
-func GetMatch(wrapper entities.Galio, matchId uint64) entities.Match {
+func GetMatch(wrapper dto.Galio, matchId uint64) dto.MatchDTO {
 	var data string
-	var match entities.Match
+	var match dto.MatchDTO
 	matchlistEndpoint := "match/v3/matches/" + fmt.Sprint(matchId)
 
 	data = wrapper.GetRiotData(matchlistEndpoint)

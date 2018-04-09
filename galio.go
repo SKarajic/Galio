@@ -20,13 +20,14 @@ trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
 package Galio
 
 import (
-	"github.com/skarajic/galio/entities"
+	"github.com/skarajic/galio/dto"
 	"github.com/skarajic/galio/handlers"
 	"github.com/skarajic/galio/regions"
 )
 
-type Galio entities.Galio
-type SummonerInput entities.SummonerInput
+type Galio dto.Galio
+type SummonerInput dto.SummonerInput
+type QueueInput dto.QueueInput
 
 // Creates a new Galio wrapper entity, handling all the requests to the API
 //
@@ -39,34 +40,34 @@ func New(ApiKey string, Region regions.Region) Galio {
 	return Galio{ApiKey: ApiKey, Region: Region}
 }
 
-// Returns a new Summoner entity, containing all data of a summoner from a specific region
+// Returns a new SummonerDTO entity, containing all data of a summoner from a specific region
 //
 // parameters:
 // - input (SummonerInput) : a SummonerInput entity containing either a summoner ID, summoner name or account ID
 //
-// returns: (Summoner) returns a new Summoner Object
+// returns: (SummonerDTO) returns a new SummonerDTO Object
 
-func (g *Galio) GetSummoner(input SummonerInput) entities.Summoner {
-	return handlers.GetSummoner(entities.Galio(*g), entities.SummonerInput(input))
+func (g *Galio) GetSummoner(input SummonerInput) dto.SummonerDTO {
+	return handlers.GetSummoner(dto.Galio(*g), dto.SummonerInput(input))
 }
 
-// Returns a new MatchList entity, containing the summary of matches of a specific summoner
+// Returns a new MatchListDTO entity, containing the summary of matches of a specific summoner
 //
 // parameters:
 // - input (SummonerInput) : a SummonerInput entity containing either a summoner ID, summoner name or account ID
 // - recent (boolean)      : a boolean to decide if the last 20 matches should be returned or all matches
 //
-// returns: (MatchList) returns a new MatchList Object filled with MatchSummary objects
-func (g *Galio) GetMatchList(input SummonerInput, recent bool) entities.MatchList {
-	return handlers.GetMatchList(entities.Galio(*g), entities.SummonerInput(input), recent)
+// returns: (MatchListDTO) returns a new MatchListDTO Object filled with MatchReferenceDTO objects
+func (g *Galio) GetMatchList(input SummonerInput, recent bool) dto.MatchListDTO {
+	return handlers.GetMatchList(dto.Galio(*g), dto.SummonerInput(input), recent)
 }
 
-// Returns a new MatchList entity, containing the data of a specific matches
+// Returns a new MatchListDTO entity, containing the data of a specific matches
 //
 // parameters:
 // - matchId (uint64) : the ID of a match which you can obtain through the matchlist
 //
-// returns: (MatchList) returns a new MatchList Object filled with MatchSummary objects
-func (g *Galio) GetMatch(matchId uint64) entities.Match {
-	return handlers.GetMatch(entities.Galio(*g), matchId)
+// returns: (MatchListDTO) returns a new MatchListDTO Object filled with MatchReferenceDTO objects
+func (g *Galio) GetMatch(matchId uint64) dto.MatchDTO {
+	return handlers.GetMatch(dto.Galio(*g), matchId)
 }

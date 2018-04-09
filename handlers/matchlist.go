@@ -1,15 +1,15 @@
 package handlers
 
 import (
-	"fmt"
-	"github.com/skarajic/galio/entities"
 	"encoding/json"
+	"fmt"
+	"github.com/skarajic/galio/dto"
 )
 
-func GetMatchList(wrapper entities.Galio, input entities.SummonerInput, recent bool) entities.MatchList {
+func GetMatchList(wrapper dto.Galio, input dto.SummonerInput, recent bool) dto.MatchListDTO {
 	var data string
 	var accountId uint64
-	var matchlist entities.MatchList
+	var matchlist dto.MatchListDTO
 	matchlistEndpoint := "match/v3/matchlists/by-account/"
 
 	if input.AccountId != 0 {
