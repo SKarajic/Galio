@@ -2,7 +2,7 @@ language: go
 go:
 - master
 go_import_path: github.com/skarajic/galio
-script: go test ./
+script: go test ./...
 
 env:
   global:
