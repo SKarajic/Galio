@@ -1,7 +1,8 @@
 package dto
 
+// Champion Champion
 type Champion struct {
-	Id   uint
+	ID   uint
 	Key  string
 	Name string
 }

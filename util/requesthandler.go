@@ -1,16 +1,23 @@
 package util
 
 import (
-	"net/http"
 	"fmt"
 	"io/ioutil"
+	"net/http"
 )
 
-func GetJSON(url string, m map[string]string) string {
+// GetJSON is a simple implementation to get a JSON
+//
+// parameters:
+// - url (string)                  : the JSON
+// - headerMap (map[string]string) : a map of Headers
+//
+// returns: (string) the requested JSON
+func GetJSON(url string, headerMap map[string]string) string {
 	client := &http.Client{}
 	req, _ := http.NewRequest(http.MethodGet, url, nil)
 
-	for key, value := range m {
+	for key, value := range headerMap {
 		req.Header.Set(key, value)
 	}
 

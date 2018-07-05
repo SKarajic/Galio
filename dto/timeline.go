@@ -1,21 +1,25 @@
 package dto
 
+// TimeLine TimeLine
 type TimeLine struct {
 	Frames        []Frame `json:"frames"`
 	FrameInterval int     `json:"frameInterval"`
 }
 
+// Position Position
 type Position struct {
 	Y int `json:"y"`
 	X int `json:"x"`
 }
 
+// Frame Frame
 type Frame struct {
 	Timestamp         int               `json:"timestamp"`
 	ParticipantFrames ParticipantFrames `json:"participantFrames"`
 	Events            []interface{}     `json:"events"`
 }
 
+// ParticipantFrames ParticipantFrames
 type ParticipantFrames struct {
 	Participant1  ParticipantFrame `json:"1"`
 	Participant2  ParticipantFrame `json:"2"`
@@ -29,6 +33,7 @@ type ParticipantFrames struct {
 	Participant10 ParticipantFrame `json:"10"`
 }
 
+// ParticipantFrame ParticipantFrame
 type ParticipantFrame struct {
 	TotalGold           uint     `json:"totalGold"`
 	TeamScore           uint     `json:"teamScore"`

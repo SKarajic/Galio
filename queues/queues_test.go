@@ -6,7 +6,10 @@ import (
 )
 
 func TestQueues(t *testing.T) {
-	reg := Solo
-	reg = Flex
-	fmt.Sprint(reg)
+	queue := Solo
+	queue = Flex
+
+	if queue != Flex {
+		fmt.Print("Wrong queue\n")
+	}
 }

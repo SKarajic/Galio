@@ -1,5 +1,6 @@
 package dto
 
+// LeaguePositionDTO LeaguePositionDTO
 type LeaguePositionDTO struct {
 	QueueType  string        `json:"queueType"`
 	Tier       string        `json:"tier"`
@@ -18,6 +19,7 @@ type LeaguePositionDTO struct {
 	FreshBlood bool          `json:"freshBlood"`
 }
 
+// MiniSeriesDTO MiniSeriesDTO
 type MiniSeriesDTO struct {
 	Wins     uint8  `json:"wins"`
 	Losses   uint8  `json:"losses"`

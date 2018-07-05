@@ -1,11 +1,14 @@
 package urls
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 func TestUrls(t *testing.T) {
-	url := API
-	fmt.Sprintf(url, "euw1", "test")
+	url := fmt.Sprintf(API, "euw1", "test")
+
+	if url != "https://euw1.api.riotgames.com/lol/test" {
+		fmt.Printf("Incorrect URL, got returned: %s\n", url)
+	}
 }

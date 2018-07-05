@@ -6,7 +6,10 @@ import (
 )
 
 func TestMaps(t *testing.T) {
-	reg := SummonersRift
-	reg = TwistedTreeline
-	fmt.Sprint(reg)
+	playableMap := SummonersRift
+	playableMap = TwistedTreeline
+
+	if playableMap != TwistedTreeline {
+		fmt.Print("Wrong map\n")
+	}
 }

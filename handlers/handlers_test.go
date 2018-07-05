@@ -2,15 +2,19 @@ package handlers
 
 import (
 	"fmt"
-	"github.com/skarajic/galio/dto"
-	"github.com/skarajic/galio/regions"
 	"os"
 	"sync"
 	"testing"
+
+	"github.com/skarajic/galio/dto"
+	"github.com/skarajic/galio/regions"
 )
 
 var key = os.Getenv("API_KEY")
-var wrapper = dto.Galio{key, regions.EUW}
+var wrapper = dto.Galio{
+	APIKey: key,
+	Region: regions.EUW,
+}
 var wg = sync.WaitGroup{}
 
 /**
@@ -21,8 +25,8 @@ func TestGetSummoner(t *testing.T) {
 	var sis [3]dto.SummonerInput
 
 	sis[0] = dto.SummonerInput{SummonerName: "IAmTheWhite"}
-	sis[1] = dto.SummonerInput{SummonerId: 69658457}
-	sis[2] = dto.SummonerInput{AccountId: 219406964}
+	sis[1] = dto.SummonerInput{SummonerID: 69658457}
+	sis[2] = dto.SummonerInput{AccountID: 219406964}
 
 	wg.Add(3)
 	for i := range sis {
@@ -36,8 +40,8 @@ func TestGetSummoner(t *testing.T) {
 	fmt.Println(sums[0])
 
 	for _, sum := range sums {
-		if sum.Id != 69658457 {
-			t.Errorf(fmt.Sprintf("Wrong summonerID received. should be 69658457, got %d", sum.Id))
+		if sum.ID != 69658457 {
+			t.Errorf(fmt.Sprintf("Wrong summonerID received. should be 69658457, got %d", sum.ID))
 		}
 	}
 }
@@ -50,8 +54,8 @@ func TestGetMatchList(t *testing.T) {
 	var sis [3]dto.SummonerInput
 
 	sis[0] = dto.SummonerInput{SummonerName: "IAmTheWhite"}
-	sis[1] = dto.SummonerInput{SummonerId: 69658457}
-	sis[2] = dto.SummonerInput{AccountId: 219406964}
+	sis[1] = dto.SummonerInput{SummonerID: 69658457}
+	sis[2] = dto.SummonerInput{AccountID: 219406964}
 
 	wg.Add(4)
 	for i := range sis {
@@ -77,13 +81,13 @@ func TestGetMatchList(t *testing.T) {
 Test the getMatch method
 */
 func TestGetMatch(t *testing.T) {
-	si := dto.SummonerInput{AccountId: 219406964}
+	si := dto.SummonerInput{AccountID: 219406964}
 	ml := GetMatchList(wrapper, si, false)
 
-	mId := ml.Matches[0].MatchId
-	match := GetMatch(wrapper, mId)
+	mID := ml.Matches[0].MatchID
+	match := GetMatch(wrapper, mID)
 
-	if match.MatchId != mId {
-		t.Errorf("Wrong matchId received. should be %d, got %d", mId, match.MatchId)
+	if match.MatchID != mID {
+		t.Errorf("Wrong matchId received. should be %d, got %d", mID, match.MatchID)
 	}
 }

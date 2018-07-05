@@ -1,9 +1,10 @@
 package dto
 
+// MatchDTO MatchDTO
 type MatchDTO struct {
 	SeasonID              uint64                   `json:"seasonId"`
 	QueueID               uint64                   `json:"queueId"`
-	MatchId               uint64                   `json:"gameId"`
+	MatchID               uint64                   `json:"gameId"`
 	ParticipantIdentities []ParticipantIdentityDTO `json:"ParticipantIdentityDTO"`
 	GameVersion           string                   `json:"gameVersion"`
 	PlatformID            string                   `json:"platformId"`
@@ -16,6 +17,7 @@ type MatchDTO struct {
 	GameCreation          uint64                   `json:"gameCreation"`
 }
 
+// PlayerDTO PlayerDTO
 type PlayerDTO struct {
 	AccountID         uint64 `json:"accountId"`
 	SummonerID        uint64 `json:"summonerId"`
@@ -27,16 +29,19 @@ type PlayerDTO struct {
 	CurrentPlatformID string `json:"currentPlatformId"`
 }
 
+// ParticipantIdentityDTO ParticipantIdentityDTO
 type ParticipantIdentityDTO struct {
 	Player        PlayerDTO `json:"player"`
 	ParticipantID uint      `json:"participantId"`
 }
 
+// TeamBansDTO TeamBansDTO
 type TeamBansDTO struct {
 	PickTurn   uint `json:"pickTurn"`
 	ChampionID uint `json:"championId"`
 }
 
+// TeamStatsDTO TeamStatsDTO
 type TeamStatsDTO struct {
 	FirstDragon          bool          `json:"firstDragon"`
 	Bans                 []TeamBansDTO `json:"bans"`
@@ -56,6 +61,7 @@ type TeamStatsDTO struct {
 	DragonKills          uint          `json:"dragonKills"`
 }
 
+// ParticipantDTO ParticipantDTO
 type ParticipantDTO struct {
 	ParticipantID             uint                   `json:"participantId"`
 	TeamID                    uint                   `json:"teamId"`
@@ -67,12 +73,14 @@ type ParticipantDTO struct {
 	HighestAchievedSeasonTier string                 `json:"highestAchievedSeasonTier"`
 }
 
+// DeltaDTO DeltaDTO
 type DeltaDTO struct {
 	Zero10 uint64 `json:"0-10"`
 	One020 uint64 `json:"10-20"`
 	Two030 uint64 `json:"20-30"`
 }
 
+// ParticipantTimeLineDTO ParticipantTimeLineDTO
 type ParticipantTimeLineDTO struct {
 	Lane                        string   `json:"lane"`
 	Role                        string   `json:"role"`
@@ -86,6 +94,7 @@ type ParticipantTimeLineDTO struct {
 	DamageTakenPerMinDeltas     DeltaDTO `json:"damageTakenPerMinDeltas"`
 }
 
+// ParticipantStatsDTO ParticipantStatsDTO
 type ParticipantStatsDTO struct {
 	ParticipantID                   uint `json:"participantId"`
 	ChampLevel                      uint `json:"champLevel"`

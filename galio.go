@@ -1,5 +1,5 @@
 /*
-Galio is a wrapper for Riot API written in Golang with support for the CommunityDragon CDN. It supports many features
+Package galio is a wrapper for Riot API written in Golang with support for the CommunityDragon CDN. It supports many features
 such as multi-region rate-limiting, request recursion, support for CommunityDragon and more.
 
 The wrapper has a few subpackages, which are the following:
@@ -17,7 +17,7 @@ Galio isn’t endorsed by Riot Games and doesn’t reflect the views or opinions
 involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered
 trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
 */
-package Galio
+package galio
 
 import (
 	"github.com/skarajic/galio/dto"
@@ -25,33 +25,37 @@ import (
 	"github.com/skarajic/galio/regions"
 )
 
+// Galio is a wrapper for RiotAPI
 type Galio dto.Galio
+
+// SummonerInput is a Summoner Input Entity
 type SummonerInput dto.SummonerInput
+
+// QueueInput is a Queue Input Entity
 type QueueInput dto.QueueInput
 
-// Creates a new Galio wrapper entity, handling all the requests to the API
+// New creates a new Galio wrapper entity, handling all the requests to the API
 //
 // parameters:
 // - apiKey (string) : your API key
 // - region (Region) : the region of choice (found in the github.com/SKarajic/Galio/regions package)
 //
 // returns: (Galio) the Galio wrapper object
-func New(ApiKey string, Region regions.Region) Galio {
-	return Galio{ApiKey: ApiKey, Region: Region}
+func New(APIKey string, Region regions.Region) Galio {
+	return Galio{APIKey: APIKey, Region: Region}
 }
 
-// Returns a new SummonerDTO entity, containing all data of a summoner from a specific region
+// GetSummoner returns a new SummonerDTO entity, containing all data of a summoner from a specific region
 //
 // parameters:
 // - input (SummonerInput) : a SummonerInput entity containing either a summoner ID, summoner name or account ID
 //
 // returns: (SummonerDTO) returns a new SummonerDTO Object
-
 func (g *Galio) GetSummoner(input SummonerInput) dto.SummonerDTO {
 	return handlers.GetSummoner(dto.Galio(*g), dto.SummonerInput(input))
 }
 
-// Returns a new MatchListDTO entity, containing the summary of matches of a specific summoner
+// GetMatchList returns a new MatchListDTO entity, containing the summary of matches of a specific summoner
 //
 // parameters:
 // - input (SummonerInput) : a SummonerInput entity containing either a summoner ID, summoner name or account ID
@@ -62,12 +66,12 @@ func (g *Galio) GetMatchList(input SummonerInput, recent bool) dto.MatchListDTO 
 	return handlers.GetMatchList(dto.Galio(*g), dto.SummonerInput(input), recent)
 }
 
-// Returns a new MatchListDTO entity, containing the data of a specific matches
+// GetMatch returns a new MatchListDTO entity, containing the data of a specific matches
 //
 // parameters:
-// - matchId (uint64) : the ID of a match which you can obtain through the matchlist
+// - matchID (uint64) : the ID of a match which you can obtain through the matchlist
 //
 // returns: (MatchListDTO) returns a new MatchListDTO Object filled with MatchReferenceDTO objects
-func (g *Galio) GetMatch(matchId uint64) dto.MatchDTO {
-	return handlers.GetMatch(dto.Galio(*g), matchId)
+func (g *Galio) GetMatch(matchID uint64) dto.MatchDTO {
+	return handlers.GetMatch(dto.Galio(*g), matchID)
 }

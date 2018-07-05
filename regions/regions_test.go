@@ -1,8 +1,8 @@
 package regions
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 func TestRegions(t *testing.T) {
@@ -17,5 +17,8 @@ func TestRegions(t *testing.T) {
 	reg = JP
 	reg = KR
 	reg = RU
-	fmt.Sprint(reg)
+
+	if reg != RU {
+		fmt.Print("Wrong region\n")
+	}
 }

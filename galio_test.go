@@ -1,17 +1,18 @@
-package Galio
+package galio
 
 import (
-	"testing"
-	"os"
-	"github.com/skarajic/galio/regions"
 	"fmt"
+	"os"
+	"testing"
+
+	"github.com/skarajic/galio/regions"
 )
 
 var key = os.Getenv("API_KEY")
 
 /**
 Tests the getSummoner method
- */
+*/
 func TestNew(t *testing.T) {
 	galio := New(key, regions.EUW)
 
