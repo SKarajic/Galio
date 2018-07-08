@@ -8,6 +8,7 @@ import (
 )
 
 // GetMatchList returns a new MatchListDTO entity, containing the summary of matches of a specific summoner
+// Handles request: /lol/match/v3/matchlists/by-account/{accountId}
 //
 // parameters:
 // - wrapper (Galio)       : the Wrapper

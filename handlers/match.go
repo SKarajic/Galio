@@ -1,25 +1,23 @@
 package handlers
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"github.com/skarajic/galio/dto"
 )
 
-// GetMatch returns a new MatchListDTO entity, containing the data of a specific matches
+// GetMatch returns a new MatchListDTO entity, containing the data of a specific matches.
+// Handles request:  /lol/match/v3/matches/{matchId}
 //
 // parameters:
 // - wrapper (Galio)       : the Wrapper
-// - matchID (uint64) : the ID of a match which you can obtain through the matchlist
+// - matchID (uint64) : the ID of a match which you can obtain through the match
 //
-// returns: (MatchListDTO) returns a new MatchListDTO Object filled with MatchReferenceDTO objects
+// returns: (MatchDTO) returns a new MatchDTO Object
 func GetMatch(wrapper dto.Galio, matchID uint64) dto.MatchDTO {
 	var data string
-	var match dto.MatchDTO
 	matchlistEndpoint := "match/v3/matches/" + fmt.Sprint(matchID)
 
 	data = wrapper.GetRiotData(matchlistEndpoint)
-	json.Unmarshal([]byte(data), &match)
-	return match
+	return dto.NewMatch(data)
 }

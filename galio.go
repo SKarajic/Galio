@@ -69,9 +69,9 @@ func (g *Galio) GetMatchList(input SummonerInput, recent bool) dto.MatchListDTO 
 // GetMatch returns a new MatchListDTO entity, containing the data of a specific matches
 //
 // parameters:
-// - matchID (uint64) : the ID of a match which you can obtain through the matchlist
+// - matchID (uint64) : the ID of a match which you can obtain through the match
 //
-// returns: (MatchListDTO) returns a new MatchListDTO Object filled with MatchReferenceDTO objects
+// returns: (MatchDTO) returns a new MatchDTO
 func (g *Galio) GetMatch(matchID uint64) dto.MatchDTO {
 	return handlers.GetMatch(dto.Galio(*g), matchID)
 }

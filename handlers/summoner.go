@@ -8,6 +8,10 @@ import (
 )
 
 // GetSummoner returns a new SummonerDTO entity, containing all data of a summoner from a specific region
+// Handles requests:
+// - /lol/summoner/v3/summoners/by-account/{accountId}
+// - /lol/summoner/v3/summoners/by-name/{summonerName}
+// - /lol/summoner/v3/summoners/{summonerId}
 //
 // parameters:
 // - wrapper (Galio)       : the Wrapper
