@@ -75,3 +75,13 @@ func (g *Galio) GetMatchList(input SummonerInput, recent bool) dto.MatchListDTO 
 func (g *Galio) GetMatch(matchID uint64) dto.MatchDTO {
 	return handlers.GetMatch(dto.Galio(*g), matchID)
 }
+
+// GetTimeLine returns a new TimeLineDTO entity, containing the timeline of a specific match.
+//
+// parameters:
+// - matchID (uint64) : the ID of a match which you can obtain through the match
+//
+// returns: (TimelineDTO) returns a new MatchDTO Object
+func (g *Galio) GetTimeLine(matchID uint64) dto.TimeLineDTO {
+	return handlers.GetTimeLine(dto.Galio(*g), matchID)
+}
