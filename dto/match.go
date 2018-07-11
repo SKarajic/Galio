@@ -7,7 +7,7 @@ type MatchDTO struct {
 	SeasonID              uint64                   `json:"seasonId"`
 	QueueID               uint64                   `json:"queueId"`
 	MatchID               uint64                   `json:"gameId"`
-	ParticipantIdentities []ParticipantIdentityDTO `json:"participants"`
+	ParticipantIdentities []ParticipantIdentityDTO `json:"participantIdentities"`
 	GameVersion           string                   `json:"gameVersion"`
 	PlatformID            string                   `json:"platformId"`
 	GameMode              string                   `json:"gameMode"`
